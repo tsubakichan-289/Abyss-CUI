@@ -8,7 +8,7 @@ let rand = Random()
 [<EntryPoint>]
 let main argv =
     Console.Clear()
-    let seed = 1 //rand.Next()
+    let seed = rand.Next()
 
     let g = new Game (seed)
     g.setChunks

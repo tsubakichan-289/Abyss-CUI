@@ -64,7 +64,6 @@ type Game(seed: int) as this =
     member this.print =
         let chunkX = modulo this.CamX 16
         let chunkY = modulo this.CamY 16
-        Console.Clear()
         for i in 0 .. 1 do
             for l in 0 .. 1 do
                 this.Chunks.[i].[l].print (i * 16 + chunkX) (l * 16 + chunkY)
