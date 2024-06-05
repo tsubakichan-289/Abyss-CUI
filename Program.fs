@@ -20,6 +20,9 @@ let main argv =
     printf "\u001b[4;34H　／｜＼　"
     printf "\u001b[5;34Hｚ　ｘ　ｃ"
 
+    printf "\u001b[7;34Hｑ : quit"
+    printf "\u001b[8;34Hseed : %d" seed
+
     let rec loop b =
         if b
             then
@@ -39,7 +42,7 @@ let main argv =
                         | _ -> ()
                         g.setChunks
                         g.print
-                        printfn " %d,%d" g.CamX g.CamY
+                        printfn " %d,%d                          " g.CamX g.CamY
                         loop b
             else ()
 
