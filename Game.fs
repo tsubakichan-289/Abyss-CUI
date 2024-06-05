@@ -11,7 +11,7 @@ let div m n =
 
 let modulo m n =
     let ans = m % n
-    if ans < 0
+    if m < 0
         then ans + n
         else ans
 

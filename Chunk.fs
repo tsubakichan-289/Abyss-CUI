@@ -50,7 +50,7 @@ type Chunk = class
         for l in 0 .. 15 do
             for i in 0 .. 15 do
                 let (b, a) = (2 * (i + x - 16) + 1, 3 + l + y - 16)
-                if 3 <= a && a <= 500 && 0 <= b && b <= 500 //17 30
+                if 3 <= a && a <= 17 && 0 <= b && b <= 30 //17 30
                     then
                         printf "\u001b[%d;%dH" a b
                         printf "%s" (cate2Emoji (this.map.[i].[l]))
