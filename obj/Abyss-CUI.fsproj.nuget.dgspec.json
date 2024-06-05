@@ -1,0 +1,65 @@
+{
+  "format": 1,
+  "restore": {
+    "/mnt/c/Users/tsuba/work/fs/Abyss-CUI/Abyss-CUI.fsproj": {}
+  },
+  "projects": {
+    "/mnt/c/Users/tsuba/work/fs/Abyss-CUI/Abyss-CUI.fsproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/mnt/c/Users/tsuba/work/fs/Abyss-CUI/Abyss-CUI.fsproj",
+        "projectName": "Abyss-CUI",
+        "projectPath": "/mnt/c/Users/tsuba/work/fs/Abyss-CUI/Abyss-CUI.fsproj",
+        "packagesPath": "/home/tsubaki/.nuget/packages/",
+        "outputPath": "/mnt/c/Users/tsuba/work/fs/Abyss-CUI/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/tsubaki/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "/usr/share/dotnet/sdk/6.0.413/FSharp/library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "FSharp.Core": {
+              "include": "Runtime, Compile, Build, Native, Analyzers, BuildTransitive",
+              "target": "Package",
+              "version": "[6.0.7, )",
+              "generatePathProperty": true
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.413/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

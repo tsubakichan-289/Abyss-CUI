@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "xXLM8It0tHjI9D7bj2vO4yVaDcM3UVRlfd4InwH1sl+TDNtDgfQvDdUTj8KHkqZBAtnQQYKZ7NAplIb2bi2zsg==",
+  "success": true,
+  "projectFilePath": "/mnt/c/Users/tsuba/work/fs/Abyss-CUI/Abyss-CUI.fsproj",
+  "expectedPackageFiles": [
+    "/home/tsubaki/.nuget/packages/fsharp.core/6.0.7/fsharp.core.6.0.7.nupkg.sha512"
+  ],
+  "logs": []
+}
