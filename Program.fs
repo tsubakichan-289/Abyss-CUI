@@ -30,19 +30,7 @@ let main argv =
                 if key.Key = ConsoleKey.Escape 
                     then Console.Clear(); loop false
                     else 
-                        match key.KeyChar with
-                        | 'a' -> g.CamX <- g.CamX + 1
-                        | 'q' -> g.CamX <- g.CamX + 1; g.CamY <- g.CamY + 1
-                        | 'w' -> g.CamY <- g.CamY + 1
-                        | 'e' -> g.CamX <- g.CamX - 1; g.CamY <- g.CamY + 1
-                        | 'd' -> g.CamX <- g.CamX - 1
-                        | 'c' -> g.CamX <- g.CamX - 1; g.CamY <- g.CamY - 1
-                        | 's' -> g.CamY <- g.CamY - 1
-                        | 'z' -> g.CamX <- g.CamX + 1; g.CamY <- g.CamY - 1
-                        | _ -> ()
-                        g.setChunks
-                        g.print
-                        printfn " %d,%d                          " g.CamX g.CamY
+                        g.exec key.KeyChar
                         loop b
             else ()
 

@@ -2,6 +2,20 @@ module Dungeon
 
 open Chunk
 open Noise
+open System
+
+
+let div m n =
+    let ans = m / n
+    if m < 0
+        then ans - 1
+        else ans
+
+let modulo m n =
+    let ans = m % n
+    if m < 0
+        then ans + n
+        else ans
 
 type Dungeon = class
     val mutable chunks : Map<(int*int), Chunk>
@@ -28,4 +42,16 @@ type Dungeon = class
                             | (p, q) -> fun x y -> (p.mainMap x y, q.mainMap x y)
                         , chunkX + a, chunkY + b)
                         this.chunks <- this.chunks.Add ((chunkX + a, chunkY + b), newChunk)
+    
+    member this.getTile x y =
+        let chunk_x = div x 16
+        let chunk_y = div y 16
+        let x_chunk = modulo x 16
+        let y_chunk = modulo y 16
+        
+        if this.isIndex chunk_x chunk_y
+            then ()
+            else this.addChunk chunk_x chunk_y
+
+        this.chunks.[(chunk_x, chunk_y)].map.[x_chunk].[y_chunk]
     end

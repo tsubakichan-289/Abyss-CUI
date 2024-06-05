@@ -38,10 +38,10 @@ type Chunk = class
         {
             chunkID = (chunk_x, chunk_y)
             map = [|
-                for i: int in chunk_x * 16 .. (chunk_x + 1) * 16 - 1 -> [|
-                    for l: int in chunk_y * 16 .. (chunk_y + 1) * 16 - 1 -> floatToCategory (mapFunc i l)
-                |]
-            |]
+                        for i: int in chunk_x * 16 .. (chunk_x + 1) * 16 - 1 -> [|
+                            for l: int in chunk_y * 16 .. (chunk_y + 1) * 16 - 1 -> if (-3 < i && i < 3 && -3 < l && l < 3) then Yuka else (floatToCategory (mapFunc i l))
+                        |]
+                    |]
         }
 
     member this.print x y = 

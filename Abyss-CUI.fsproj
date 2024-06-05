@@ -10,6 +10,7 @@
     <Compile Include="Noise.fs" />
     <Compile Include="Chunk.fs" />
     <Compile Include="Dungeon.fs" />
+    <Compile Include="Player.fs" />
     <Compile Include="Game.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
