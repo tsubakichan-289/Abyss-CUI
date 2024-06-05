@@ -18,9 +18,9 @@ let main argv =
     printf "\u001b[2;34H　＼｜／　"
     printf "\u001b[3;34Hａー　ーｄ"
     printf "\u001b[4;34H　／｜＼　"
-    printf "\u001b[5;34Hｚ　ｘ　ｃ"
+    printf "\u001b[5;34Hｚ　ｓ　ｃ"
 
-    printf "\u001b[7;34Hｑ : quit"
+    printf "\u001b[7;34HEsc : quit"
     printf "\u001b[8;34Hseed : %d" seed
 
     let rec loop b =
@@ -37,7 +37,7 @@ let main argv =
                         | 'e' -> g.CamX <- g.CamX - 1; g.CamY <- g.CamY + 1
                         | 'd' -> g.CamX <- g.CamX - 1
                         | 'c' -> g.CamX <- g.CamX - 1; g.CamY <- g.CamY - 1
-                        | 'x' -> g.CamY <- g.CamY - 1
+                        | 's' -> g.CamY <- g.CamY - 1
                         | 'z' -> g.CamX <- g.CamX + 1; g.CamY <- g.CamY - 1
                         | _ -> ()
                         g.setChunks
