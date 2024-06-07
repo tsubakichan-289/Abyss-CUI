@@ -49,9 +49,18 @@ type Dungeon = class
         let x_chunk = modulo x 16
         let y_chunk = modulo y 16
         
-        if this.isIndex chunk_x chunk_y
+        if this.isIndex (chunk_x - 1) (chunk_y - 1)
             then ()
-            else this.addChunk chunk_x chunk_y
+            else this.addChunk (chunk_x - 1) (chunk_y - 1)
 
         this.chunks.[(chunk_x, chunk_y)].map.[x_chunk].[y_chunk]
+        
+    member this.print x y = 
+        printf "\u001b[0;0H　　　　　　　　　　１１１１１"
+        printf "\u001b[2;0H０１２３４５６７８９０１２３４"
+        for i in 0 .. 14 do
+            for l in 0 .. 14 do
+                printf "\u001b[%d;%dH" (l + 3) (i * 2 + 1)
+                printf "%s" (cate2Emoji (this.getTile (x - 7 + i) (y - 7 + l)))
+                printf "\u001b[%d;32H%d" (l + 3) l
     end

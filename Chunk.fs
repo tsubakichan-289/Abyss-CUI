@@ -11,6 +11,13 @@ let cate2Emoji c =
     | Ana  -> "\u001b[40m"  + "　" + "\u001b[0m"
     | Mizu -> "\u001b[44m"  + "～" + "\u001b[0m"
 
+let cate2Play c = 
+    match c with
+    | Yuka -> "\u001b[43m"  + "😊" + "\u001b[0m"
+    | Kabe -> "\u001b[100m" + "😊" + "\u001b[0m"
+    | Ana  -> "\u001b[40m"  + "😊" + "\u001b[0m"
+    | Mizu -> "\u001b[44m"  + "😊" + "\u001b[0m"
+
 let sepFunc (_A : float, _B : float, x : float, y : float)=
     let c = _A - _B + 1.0
     let a = (c + sqrt(c*c - 4.0 *_A)) / 2.0
@@ -43,19 +50,4 @@ type Chunk = class
                         |]
                     |]
         }
-
-    member this.print x y = 
-        printf "\u001b[0;0H　　　　　　　　　　１１１１１"
-        printf "\u001b[2;0H０１２３４５６７８９０１２３４"
-        for l in 0 .. 15 do
-            for i in 0 .. 15 do
-                let (b, a) = (2 * (i + x - 16) + 1, 3 + l + y - 16)
-                if 3 <= a && a <= 17 && 0 <= b && b <= 30 //17 30
-                    then
-                        printf "\u001b[%d;%dH" a b
-                        printf "%s" (cate2Emoji (this.map.[i].[l]))
-                    else ()
-            if l = 15
-                then ()
-                else printf "\u001b[%d;%dH%d" (l + 3) 31 l
     end

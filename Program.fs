@@ -7,11 +7,20 @@ let rand = Random()
 
 [<EntryPoint>]
 let main argv =
+    let g = new Game (000)
+    for i in -20 .. 20 do
+        g.Dungeons.[g.DungeonNum].getTile i 0
+        let tileMap = g.Dungeons.[g.DungeonNum].chunks
+        let keysArray = tileMap |> Map.toArray |> Array.map fst
+        Console.WriteLine(sprintf "Keys: %A" keysArray)
+    0
+
+(*
+let main argv =
     Console.Clear()
     let seed = rand.Next()
 
     let g = new Game (seed)
-    g.setChunks
     g.print
 
     printf "\u001b[1;34Hｑ　ｗ　ｅ"
@@ -36,3 +45,4 @@ let main argv =
 
     loop true
     0
+*)
