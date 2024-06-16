@@ -6,16 +6,14 @@ open System
 
 
 let div m n =
-    let ans = m / n
-    if m < 0
-        then ans - 1
-        else ans
+    if m < 0 then
+        (m - n + 1) / n
+    else
+        m / n
 
 let modulo m n =
     let ans = m % n
-    if m < 0
-        then ans + n
-        else ans
+    if ans < 0 then ans + n else ans
 
 type Dungeon = class
     val mutable chunks : Map<(int*int), Chunk>
@@ -28,20 +26,12 @@ type Dungeon = class
         chunks = Map []
     }
 
-    member this.isIndex (a: int) (b: int) =
-        Map.containsKey (a, b) this.chunks
-
     member this.addChunk (chunkX: int) (chunkY: int) =
-        for a in 0 .. 1 do
-            for b in 0 .. 1 do
-                if this.isIndex (chunkX + a) (chunkY + b)
-                    then ()
-                    else 
-                        let newChunk: Chunk = new Chunk ( 
-                            match this.noise with
-                            | (p, q) -> fun x y -> (p.mainMap x y, q.mainMap x y)
-                        , chunkX + a, chunkY + b)
-                        this.chunks <- this.chunks.Add ((chunkX + a, chunkY + b), newChunk)
+        let newChunk: Chunk = new Chunk ( 
+            match this.noise with
+            | (p, q) -> fun x y -> (p.mainMap x y, q.mainMap x y)
+        , chunkX, chunkY)
+        this.chunks <- this.chunks.Add ((chunkX, chunkY), newChunk)
     
     member this.getTile x y =
         let chunk_x = div x 16
@@ -49,10 +39,14 @@ type Dungeon = class
         let x_chunk = modulo x 16
         let y_chunk = modulo y 16
         
-        if this.isIndex (chunk_x - 1) (chunk_y - 1)
-            then ()
-            else this.addChunk (chunk_x - 1) (chunk_y - 1)
-
+        if not (this.chunks.ContainsKey (chunk_x, chunk_y))
+            then this.addChunk chunk_x chunk_y
+        let chunk = this.chunks.[(chunk_x, chunk_y)]
+        if x_chunk >= 0 && x_chunk < chunk.map.Length && y_chunk >= 0 && y_chunk < chunk.map.[x_chunk].Length 
+            then
+                chunk.map.[x_chunk].[y_chunk]
+            else
+                failwithf "Invalid tile coordinates (%d, %d) in chunk (%d, %d)" x_chunk y_chunk chunk_x chunk_y
         this.chunks.[(chunk_x, chunk_y)].map.[x_chunk].[y_chunk]
         
     member this.print x y = 

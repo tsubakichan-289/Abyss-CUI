@@ -8,17 +8,17 @@
     ".NETCoreApp,Version=v6.0": {
       "Abyss-CUI/1.0.0": {
         "dependencies": {
-          "FSharp.Core": "6.0.7"
+          "FSharp.Core": "8.0.100"
         },
         "runtime": {
           "Abyss-CUI.dll": {}
         }
       },
-      "FSharp.Core/6.0.7": {
+      "FSharp.Core/8.0.100": {
         "runtime": {
           "lib/netstandard2.1/FSharp.Core.dll": {
-            "assemblyVersion": "6.0.0.0",
-            "fileVersion": "6.0.722.51308"
+            "assemblyVersion": "8.0.0.0",
+            "fileVersion": "8.1.23.52306"
           }
         },
         "resources": {
@@ -71,12 +71,12 @@
       "serviceable": false,
       "sha512": ""
     },
-    "FSharp.Core/6.0.7": {
+    "FSharp.Core/8.0.100": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-e6wGrq5smV3Yk2fBE/Y0nBG5oFyF59k5Je0a0QDydUpg6liyaafGjD3xvutciKepCP2knspZ/sWViC/F1OyyQQ==",
-      "path": "fsharp.core/6.0.7",
-      "hashPath": "fsharp.core.6.0.7.nupkg.sha512"
+      "sha512": "sha512-ZOVZ/o+jI3ormTZOa28Wh0tSRoyle1f7lKFcUN61sPiXI7eDZu8eSveFybgTeyIEyW0ujjp31cp7GOglDgsNEg==",
+      "path": "fsharp.core/8.0.100",
+      "hashPath": "fsharp.core.8.0.100.nupkg.sha512"
     }
   }
 }

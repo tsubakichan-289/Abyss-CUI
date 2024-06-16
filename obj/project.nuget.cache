@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "xXLM8It0tHjI9D7bj2vO4yVaDcM3UVRlfd4InwH1sl+TDNtDgfQvDdUTj8KHkqZBAtnQQYKZ7NAplIb2bi2zsg==",
+  "dgSpecHash": "pgZ8nb9j0Y55RtNCjCLk85o2zEaINptbcaI7E5M674poMnZfxGX6ijvyRATy41+VR8RoKD1IooNfBfBnXVazsA==",
   "success": true,
-  "projectFilePath": "/mnt/c/Users/tsuba/work/fs/Abyss-CUI/Abyss-CUI.fsproj",
+  "projectFilePath": "D:\\work\\fs\\Abyss-CUI\\Abyss-CUI\\Abyss-CUI.fsproj",
   "expectedPackageFiles": [
-    "/home/tsubaki/.nuget/packages/fsharp.core/6.0.7/fsharp.core.6.0.7.nupkg.sha512"
+    "C:\\Users\\Masuo\\.nuget\\packages\\fsharp.core\\8.0.100\\fsharp.core.8.0.100.nupkg.sha512"
   ],
   "logs": []
 }

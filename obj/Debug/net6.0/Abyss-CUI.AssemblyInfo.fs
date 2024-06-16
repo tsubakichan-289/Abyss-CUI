@@ -10,7 +10,7 @@ open System.Reflection
 [<assembly: System.Reflection.AssemblyCompanyAttribute("Abyss-CUI")>]
 [<assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")>]
 [<assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")>]
-[<assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")>]
+[<assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+272ba483d472097df08b49a8683b56fe9a3ad247")>]
 [<assembly: System.Reflection.AssemblyProductAttribute("Abyss-CUI")>]
 [<assembly: System.Reflection.AssemblyTitleAttribute("Abyss-CUI")>]
 [<assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")>]

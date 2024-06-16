@@ -5,20 +5,6 @@ open System
 open Player
 open Chunk
 
-let div m n =
-    let ans = m / n
-    if m < 0
-        then ans - 1
-        else ans
-
-let modulo m n =
-    let ans = m % n
-    if m < 0
-        then ans + n
-        else ans
-
-
-
 type Game(seed: int) =
     let mutable dungeons = [| new Dungeon(seed) |]
     let mutable dungeonNum = 0

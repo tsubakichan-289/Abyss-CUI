@@ -1,26 +1,28 @@
 {
   "format": 1,
   "restore": {
-    "/mnt/c/Users/tsuba/work/fs/Abyss-CUI/Abyss-CUI.fsproj": {}
+    "D:\\work\\fs\\Abyss-CUI\\Abyss-CUI\\Abyss-CUI.fsproj": {}
   },
   "projects": {
-    "/mnt/c/Users/tsuba/work/fs/Abyss-CUI/Abyss-CUI.fsproj": {
+    "D:\\work\\fs\\Abyss-CUI\\Abyss-CUI\\Abyss-CUI.fsproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/mnt/c/Users/tsuba/work/fs/Abyss-CUI/Abyss-CUI.fsproj",
+        "projectUniqueName": "D:\\work\\fs\\Abyss-CUI\\Abyss-CUI\\Abyss-CUI.fsproj",
         "projectName": "Abyss-CUI",
-        "projectPath": "/mnt/c/Users/tsuba/work/fs/Abyss-CUI/Abyss-CUI.fsproj",
-        "packagesPath": "/home/tsubaki/.nuget/packages/",
-        "outputPath": "/mnt/c/Users/tsuba/work/fs/Abyss-CUI/obj/",
+        "projectPath": "D:\\work\\fs\\Abyss-CUI\\Abyss-CUI\\Abyss-CUI.fsproj",
+        "packagesPath": "C:\\Users\\Masuo\\.nuget\\packages\\",
+        "outputPath": "D:\\work\\fs\\Abyss-CUI\\Abyss-CUI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/tsubaki/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\Masuo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
-          "/usr/share/dotnet/sdk/6.0.413/FSharp/library-packs": {},
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\sdk\\8.0.100\\FSharp\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -37,7 +39,7 @@
             "FSharp.Core": {
               "include": "Runtime, Compile, Build, Native, Analyzers, BuildTransitive",
               "target": "Package",
-              "version": "[6.0.7, )",
+              "version": "[8.0.100, )",
               "generatePathProperty": true
             }
           },
@@ -57,7 +59,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.413/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }
