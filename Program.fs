@@ -11,7 +11,7 @@ let main argv =
     let seed = rand.Next()
 
     let g = new Game (seed)
-    //g.print
+    g.print
 
     printf "\u001b[1;34Hｑ　ｗ　ｅ"
     printf "\u001b[2;34H　＼｜／　"
