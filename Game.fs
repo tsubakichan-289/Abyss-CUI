@@ -41,9 +41,9 @@ type Game(seed: int) =
 
     member this.print =
         this.Dungeons.[this.DungeonNum].print this.CamX this.CamY
-        printf "\u001b[%d;%dH%s" 10 15 (cate2Play (this.Dungeons.[this.DungeonNum].getTile this.Player.x this.Player.y))
+        printf "\u001b[%d;%dH%s" 10 15 (cate2Play (this.Dungeons.[this.DungeonNum].getTile this.CamX this.CamY))
         printf "\u001b[9;34H"
-        match (this.Dungeons.[this.DungeonNum].getTile this.Player.x this.Player.y) with
+        match (this.Dungeons.[this.DungeonNum].getTile this.CamX this.CamY) with
         | Yuka -> printf "Yuka"
         | Kabe -> printf "Kabe"
         | Mizu -> printf "Mizu"
@@ -52,15 +52,24 @@ type Game(seed: int) =
 
     
     member this.exec char =
-        match char with
-        | 'a' -> this.Player.x <- this.Player.x - 1
-        | 'q' -> this.Player.x <- this.Player.x - 1; this.Player.y <- this.Player.y + 1
-        | 'w' ->                                     this.Player.y <- this.Player.y + 1
-        | 'e' -> this.Player.x <- this.Player.x + 1; this.Player.y <- this.Player.y + 1
-        | 'd' -> this.Player.x <- this.Player.x + 1
-        | 'c' -> this.Player.x <- this.Player.x + 1; this.Player.y <- this.Player.y - 1
-        | 's' ->                                     this.Player.y <- this.Player.y - 1
-        | 'z' -> this.Player.x <- this.Player.x - 1; this.Player.y <- this.Player.y - 1
+        let dun = this.Dungeons.[this.DungeonNum]
+        let a = dun.getTile (this.CamX - 1) (this.CamY)
+        let q = dun.getTile (this.CamX - 1) (this.CamY - 1)
+        let w = dun.getTile (this.CamX)     (this.CamY - 1)
+        let e = dun.getTile (this.CamX + 1) (this.CamY - 1)
+        let d = dun.getTile (this.CamX + 1) (this.CamY)
+        let c = dun.getTile (this.CamX + 1) (this.CamY + 1)
+        let s = dun.getTile (this.CamX)     (this.CamY + 1)
+        let z = dun.getTile (this.CamX - 1) (this.CamY + 1)
+        match (char,a,q,w,e,d,c,s,z) with
+        | ('a',Yuka,_,_,_,_,_,_,_) -> this.Player.x <- this.Player.x - 1
+        | ('q',_,Yuka,_,_,_,_,_,_) -> this.Player.x <- this.Player.x - 1; this.Player.y <- this.Player.y + 1
+        | ('w',_,_,Yuka,_,_,_,_,_) ->                                     this.Player.y <- this.Player.y + 1
+        | ('e',_,_,_,Yuka,_,_,_,_) -> this.Player.x <- this.Player.x + 1; this.Player.y <- this.Player.y + 1
+        | ('d',_,_,_,_,Yuka,_,_,_) -> this.Player.x <- this.Player.x + 1
+        | ('c',_,_,_,_,_,Yuka,_,_) -> this.Player.x <- this.Player.x + 1; this.Player.y <- this.Player.y - 1
+        | ('s',_,_,_,_,_,_,Yuka,_) ->                                     this.Player.y <- this.Player.y - 1
+        | ('z',_,_,_,_,_,_,_,Yuka) -> this.Player.x <- this.Player.x - 1; this.Player.y <- this.Player.y - 1
         | _ -> ()
         this.CamX <- this.Player.x
         this.CamY <- - this.Player.y
