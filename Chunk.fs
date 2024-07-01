@@ -18,6 +18,13 @@ let cate2Play c =
     | Ana  -> "\u001b[40m"  + "😊" + "\u001b[0m"
     | Mizu -> "\u001b[44m"  + "😊" + "\u001b[0m"
 
+let cate2Enemy c = 
+    match c with
+    | Yuka -> "\u001b[43m"  + "👻" + "\u001b[0m"
+    | Kabe -> "\u001b[100m" + "👻" + "\u001b[0m"
+    | Ana  -> "\u001b[40m"  + "👻" + "\u001b[0m"
+    | Mizu -> "\u001b[44m"  + "👻" + "\u001b[0m"
+
 let sepFunc (_A : float, _B : float, x : float, y : float)=
     let c = _A - _B + 1.0
     let a = (c + sqrt(c*c - 4.0 *_A)) / 2.0

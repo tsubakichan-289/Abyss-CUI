@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\work\\fs\\Abyss-CUI\\Abyss-CUI\\Abyss-CUI.fsproj": {}
+    "d:\\work\\fs\\Abyss-CUI\\Abyss-CUI\\Abyss-CUI.fsproj": {}
   },
   "projects": {
-    "D:\\work\\fs\\Abyss-CUI\\Abyss-CUI\\Abyss-CUI.fsproj": {
+    "d:\\work\\fs\\Abyss-CUI\\Abyss-CUI\\Abyss-CUI.fsproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\work\\fs\\Abyss-CUI\\Abyss-CUI\\Abyss-CUI.fsproj",
+        "projectUniqueName": "d:\\work\\fs\\Abyss-CUI\\Abyss-CUI\\Abyss-CUI.fsproj",
         "projectName": "Abyss-CUI",
-        "projectPath": "D:\\work\\fs\\Abyss-CUI\\Abyss-CUI\\Abyss-CUI.fsproj",
+        "projectPath": "d:\\work\\fs\\Abyss-CUI\\Abyss-CUI\\Abyss-CUI.fsproj",
         "packagesPath": "C:\\Users\\Masuo\\.nuget\\packages\\",
-        "outputPath": "D:\\work\\fs\\Abyss-CUI\\Abyss-CUI\\obj\\",
+        "outputPath": "d:\\work\\fs\\Abyss-CUI\\Abyss-CUI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Masuo\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -153,3 +153,11 @@ type PerlinNoise = class
     member private this.map8  (x: int) (y: int) = nextMap (nextMap (nextMap (perlinMap this.seed))) x y
     member this.mainMap (x: int) (y: int) = bokashi this.map8 x y / 2.0 + bokashi this.map32 x y / 4.0 + bokashi this.map16 x y / 8.0 + bokashi this.map8 x y / 8.0
     end
+
+type Noise = class
+    val private seed : int
+    new (seed: int) = {
+        seed = seed
+    }
+    member this.mainMap (x: int) (y: int) = perlinMap this.seed x y
+    end

@@ -3,7 +3,7 @@ module Dungeon
 open Chunk
 open Noise
 open System
-
+open Character
 
 let div m n =
     if m < 0 then
@@ -19,11 +19,13 @@ type Dungeon = class
     val mutable chunks : Map<(int*int), Chunk>
     val noise : (PerlinNoise*PerlinNoise)
     val seed : int 
+    val mutable stage : Character array
 
     new (seed : int) = {
         seed = seed
         noise = (new PerlinNoise (seed),new PerlinNoise (seed + 88182))
         chunks = Map []
+        stage = [||]
     }
 
     member this.addChunk (chunkX: int) (chunkY: int) =
@@ -42,11 +44,11 @@ type Dungeon = class
         if not (this.chunks.ContainsKey (chunk_x, chunk_y))
             then this.addChunk chunk_x chunk_y
         let chunk = this.chunks.[(chunk_x, chunk_y)]
-        if x_chunk >= 0 && x_chunk < chunk.map.Length && y_chunk >= 0 && y_chunk < chunk.map.[x_chunk].Length 
+        (*if x_chunk >= 0 && x_chunk < chunk.map.Length && y_chunk >= 0 && y_chunk < chunk.map.[x_chunk].Length 
             then
                 chunk.map.[x_chunk].[y_chunk]
             else
-                failwithf "Invalid tile coordinates (%d, %d) in chunk (%d, %d)" x_chunk y_chunk chunk_x chunk_y
+                failwithf "Invalid tile coordinates (%d, %d) in chunk (%d, %d)" x_chunk y_chunk chunk_x chunk_y*)
         this.chunks.[(chunk_x, chunk_y)].map.[x_chunk].[y_chunk]
         
     member this.print x y = 

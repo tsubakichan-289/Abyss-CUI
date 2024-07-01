@@ -2,7 +2,7 @@ module Game
 
 open Dungeon
 open System
-open Player
+open Character
 open Chunk
 
 type Game(seed: int) =
@@ -10,7 +10,7 @@ type Game(seed: int) =
     let mutable dungeonNum = 0
     let mutable camX = 0
     let mutable camY = 0
-    let mutable player = new Player (10, 0, 0, 0, 0)
+    let mutable player = new Player (10, 0, 0, 0)
 
     // 初期化コード
     do
@@ -27,9 +27,13 @@ type Game(seed: int) =
         with get() = camY
         and set(value) = camY <- value
 
-    member this.Dungeons
+    member private this.Dungeons
         with get() = dungeons
         and set(value) = dungeons <- value
+
+    member this.Dungeon
+        with get() = this.Dungeons.[this.DungeonNum]
+        and set(value) = this.Dungeons.[this.DungeonNum] <- value
 
     member this.DungeonNum
         with get() = dungeonNum
@@ -40,37 +44,40 @@ type Game(seed: int) =
         and set(value) = player <- value
 
     member this.print =
-        this.Dungeons.[this.DungeonNum].print this.CamX this.CamY
-        printf "\u001b[%d;%dH%s" 10 15 (cate2Play (this.Dungeons.[this.DungeonNum].getTile this.CamX this.CamY))
+        this.Dungeon.print this.CamX this.CamY
+        printf "\u001b[%d;%dH%s" 10 15 (cate2Play (this.Dungeon.getTile this.CamX this.CamY)) // プレイヤーの位置を表示
+        for c in this.Dungeon.stage do
+            let cX = c.X + 7 - this.Player.X
+            let cY = c.Y + 10 + this.Player.Y
+            if cX >= 0 && cX < 15 && cY >= 3 && cY < 18 then
+                printf "\u001b[%d;%dH%s" cY (cX * 2 + 1) (cate2Enemy (this.Dungeon.getTile c.X c.Y))
         printf "\u001b[9;34H"
-        match (this.Dungeons.[this.DungeonNum].getTile this.CamX this.CamY) with
+        match (this.Dungeon.getTile this.CamX this.CamY) with
         | Yuka -> printf "Yuka"
         | Kabe -> printf "Kabe"
         | Mizu -> printf "Mizu"
         | Ana  -> printf "Ana "
-        printf " (%d, %d)       " this.Player.x this.Player.y
-
+        printf " (%d, %d)       " this.Player.X this.Player.Y
     
+        member this.move (character: Character) (a:int) (b:int) =
+        let tile = this.Dungeon.getTile (character.X + a) (character.Y + b)
+        match (tile, Array.exists (fun (p: Character) -> (p.X = character.X + a &&  (- p.Y) = character.Y + b)) (Array.append this.Dungeon.stage [|this.Player|])) with
+        | (Yuka,false) -> character.X <- character.X + a; character.Y <- character.Y + b
+        | _ ->()
+
     member this.exec char =
-        let dun = this.Dungeons.[this.DungeonNum]
-        let a = dun.getTile (this.CamX - 1) (this.CamY)
-        let q = dun.getTile (this.CamX - 1) (this.CamY - 1)
-        let w = dun.getTile (this.CamX)     (this.CamY - 1)
-        let e = dun.getTile (this.CamX + 1) (this.CamY - 1)
-        let d = dun.getTile (this.CamX + 1) (this.CamY)
-        let c = dun.getTile (this.CamX + 1) (this.CamY + 1)
-        let s = dun.getTile (this.CamX)     (this.CamY + 1)
-        let z = dun.getTile (this.CamX - 1) (this.CamY + 1)
-        match (char,a,q,w,e,d,c,s,z) with
-        | ('a',Yuka,_,_,_,_,_,_,_) -> this.Player.x <- this.Player.x - 1
-        | ('q',_,Yuka,_,_,_,_,_,_) -> this.Player.x <- this.Player.x - 1; this.Player.y <- this.Player.y + 1
-        | ('w',_,_,Yuka,_,_,_,_,_) ->                                     this.Player.y <- this.Player.y + 1
-        | ('e',_,_,_,Yuka,_,_,_,_) -> this.Player.x <- this.Player.x + 1; this.Player.y <- this.Player.y + 1
-        | ('d',_,_,_,_,Yuka,_,_,_) -> this.Player.x <- this.Player.x + 1
-        | ('c',_,_,_,_,_,Yuka,_,_) -> this.Player.x <- this.Player.x + 1; this.Player.y <- this.Player.y - 1
-        | ('s',_,_,_,_,_,_,Yuka,_) ->                                     this.Player.y <- this.Player.y - 1
-        | ('z',_,_,_,_,_,_,_,Yuka) -> this.Player.x <- this.Player.x - 1; this.Player.y <- this.Player.y - 1
+        match char with
+        | 'a' -> this.move this.Player (- 1) 0
+        | 'q' -> this.move this.Player (- 1) 1
+        | 'w' -> this.move this.Player 0     1
+        | 'e' -> this.move this.Player 1     1
+        | 'd' -> this.move this.Player 1     0
+        | 'c' -> this.move this.Player 1     (- 1)
+        | 's' -> this.move this.Player 0     (- 1)
+        | 'z' -> this.move this.Player (- 1) (- 1)
         | _ -> ()
-        this.CamX <- this.Player.x
-        this.CamY <- - this.Player.y
+        for c in this.Dungeon.stage do
+            this.move c 0 1
+        this.CamX <- this.Player.X
+        this.CamY <- - this.Player.Y
         this.print
