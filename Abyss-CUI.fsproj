@@ -7,8 +7,8 @@
   <ItemGroup>
     <Compile Include="MyString.fs" />
     <Compile Include="Noise.fs" />
-    <Compile Include="Chunk.fs" />
     <Compile Include="Character.fs" />
+    <Compile Include="Chunk.fs" />
     <Compile Include="Dungeon.fs" />
     <Compile Include="Game.fs" />
     <Compile Include="Program.fs" />

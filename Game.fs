@@ -5,6 +5,8 @@ open System
 open Character
 open Chunk
 
+
+
 type Game(seed: int) =
     let mutable dungeons = [| new Dungeon(seed) |]
     let mutable dungeonNum = 0
@@ -46,38 +48,47 @@ type Game(seed: int) =
     member this.print =
         this.Dungeon.print this.CamX this.CamY
         printf "\u001b[%d;%dH%s" 10 15 (cate2Play (this.Dungeon.getTile this.CamX this.CamY)) // プレイヤーの位置を表示
-        for c in this.Dungeon.stage do
-            let cX = c.X + 7 - this.Player.X
-            let cY = c.Y + 10 + this.Player.Y
-            if cX >= 0 && cX < 15 && cY >= 3 && cY < 18 then
-                printf "\u001b[%d;%dH%s" cY (cX * 2 + 1) (cate2Enemy (this.Dungeon.getTile c.X c.Y))
-        printf "\u001b[9;34H"
-        match (this.Dungeon.getTile this.CamX this.CamY) with
-        | Yuka -> printf "Yuka"
-        | Kabe -> printf "Kabe"
-        | Mizu -> printf "Mizu"
-        | Ana  -> printf "Ana "
-        printf " (%d, %d)       " this.Player.X this.Player.Y
-    
-        member this.move (character: Character) (a:int) (b:int) =
-        let tile = this.Dungeon.getTile (character.X + a) (character.Y + b)
-        match (tile, Array.exists (fun (p: Character) -> (p.X = character.X + a &&  (- p.Y) = character.Y + b)) (Array.append this.Dungeon.stage [|this.Player|])) with
-        | (Yuka,false) -> character.X <- character.X + a; character.Y <- character.Y + b
-        | _ ->()
 
     member this.exec char =
         match char with
-        | 'a' -> this.move this.Player (- 1) 0
-        | 'q' -> this.move this.Player (- 1) 1
-        | 'w' -> this.move this.Player 0     1
-        | 'e' -> this.move this.Player 1     1
-        | 'd' -> this.move this.Player 1     0
-        | 'c' -> this.move this.Player 1     (- 1)
-        | 's' -> this.move this.Player 0     (- 1)
-        | 'z' -> this.move this.Player (- 1) (- 1)
+        | 'a' -> this.move this.Player (- 1) 0    ; this.Player.Direction <- Left
+        | 'q' -> this.move this.Player (- 1) (-1) ; this.Player.Direction <- UpLeft
+        | 'w' -> this.move this.Player 0     (-1) ; this.Player.Direction <- Up
+        | 'e' -> this.move this.Player 1     (-1) ; this.Player.Direction <- UpRight
+        | 'd' -> this.move this.Player 1     0    ; this.Player.Direction <- Right
+        | 'c' -> this.move this.Player 1     1    ; this.Player.Direction <- DownRight
+        | 's' -> this.move this.Player 0     1    ; this.Player.Direction <- Down
+        | 'z' -> this.move this.Player (- 1) 1    ; this.Player.Direction <- DownLeft
+        | 'k' ->
+            let attackCoordination = 
+                match this.Player.Direction with
+                | Up -> (this.Player.X, this.Player.Y - 1)
+                | Down -> (this.Player.X, this.Player.Y + 1)
+                | Left -> (this.Player.X - 1, this.Player.Y)
+                | Right -> (this.Player.X + 1, this.Player.Y)
+                | UpLeft -> (this.Player.X - 1, this.Player.Y - 1)
+                | UpRight -> (this.Player.X + 1, this.Player.Y - 1)
+                | DownLeft -> (this.Player.X - 1, this.Player.Y + 1)
+                | DownRight -> (this.Player.X + 1, this.Player.Y + 1)
+            this.Dungeon.setTile (fst attackCoordination) (snd attackCoordination) Yuka
         | _ -> ()
-        for c in this.Dungeon.stage do
-            this.move c 0 1
+        for i in this.Dungeon.activeEnemy do 
+            let nowFrame = [| for i in -7 .. 7 do
+                                [| for l in -7 .. 7 do
+                                    if (this.Dungeon.getTile (this.Player.X + i) (this.Player.Y + l) = Yuka) || not (this.Dungeon.stage.ContainsKey(this.Player.X + i, this.Player.Y + l))
+                                        then 1
+                                        else 0 |] |]
+            let e = this.Dungeon.stage.[i]
+            let (a,b) = e.AI (nowFrame) (e.X - this.Player.X + 7, e.Y - this.Player.Y + 7)
+            this.move e (-a) (-b)
         this.CamX <- this.Player.X
-        this.CamY <- - this.Player.Y
+        this.CamY <- this.Player.Y
         this.print
+
+    member this.move (character: Character) (a:int) (b:int) =
+        let tile = this.Dungeon.getTile (character.X + a) (character.Y + b)
+        match (tile, (this.Dungeon.stage.Add ((this.Player.X,this.Player.Y),this.Player)).ContainsKey(character.X + a,character.Y + b)) with
+        | (Yuka,false) -> 
+            this.Dungeon.stage <- changeKey (character.X, character.Y) (character.X + a, character.Y + b) this.Dungeon.stage
+            character.X <- character.X + a; character.Y <- character.Y + b
+        | _ -> ()

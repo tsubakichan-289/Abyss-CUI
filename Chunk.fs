@@ -1,8 +1,10 @@
 module Chunk
 
-open Noise
-
 type TileCategory = Yuka | Kabe | Ana | Mizu
+
+let modulo m n =
+    let ans = m % n
+    if ans < 0 then ans + n else ans
 
 let cate2Emoji c = 
     match c with
@@ -47,8 +49,9 @@ let floatToCategory (f1: float,f2: float) =
 type Chunk = class
     val chunkID : (int * int)
     val map : array<array<TileCategory>>
-
-    new (mapFunc, chunk_x, chunk_y) =
+    val enemyRate : float
+    val private noiseFunc : (int -> int -> float)
+    new (mapFunc,noiseFunc , chunk_x, chunk_y, enemyRate) =
         {
             chunkID = (chunk_x, chunk_y)
             map = [|
@@ -56,5 +59,11 @@ type Chunk = class
                             for l: int in chunk_y * 16 .. (chunk_y + 1) * 16 - 1 -> if (-3 < i && i < 3 && -3 < l && l < 3) then Yuka else (floatToCategory (mapFunc i l))
                         |]
                     |]
+            enemyRate = enemyRate
+            noiseFunc = noiseFunc
         }
+    
+    member this.isBorn x y = 
+        let rate = this.noiseFunc x y
+        (rate < this.enemyRate) && this.map.[modulo x 16].[modulo y 16] = Yuka
     end
