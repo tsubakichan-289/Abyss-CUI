@@ -49,40 +49,38 @@ let findPath (startX: int) (startY: int) (goalX: int) (goalY: int) (map: int[][]
     findPathInternal ()
 
 // 使用例
-let map = 
-    [| [|0; 1; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0|]
-       [|0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0|]
-       [|0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0|]
-       [|0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0|]
-       [|0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0|]
-       [|0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0|]
-       [|0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0|]
-       [|0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0|]
-       [|0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0|]
-       [|0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 1; 0|]
-       [|0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 1; 0|]
-       [|0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 1; 0|]
-       [|0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 1; 0|]
-       [|0; 0; 0; 0; 0; 0; 0; 0; 0; 1; 1; 1; 1; 1; 0|]
-       [|0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0|]
-     |]
+let map = [|
+    [|0; 0; 0; 0; 0; 0; 0; 0; 0; 0|]
+    [|0; 1; 1; 1; 1; 1; 1; 1; 0; 0|]
+    [|0; 1; 0; 0; 0; 0; 0; 1; 0; 0|]
+    [|0; 1; 1; 0; 1; 1; 0; 1; 0; 0|]
+    [|0; 1; 1; 0; 0; 1; 0; 1; 0; 0|]
+    [|0; 1; 0; 0; 0; 1; 0; 1; 0; 0|]
+    [|0; 1; 0; 0; 0; 1; 0; 1; 0; 0|]
+    [|0; 1; 0; 0; 0; 1; 0; 1; 0; 0|]
+    [|0; 1; 0; 0; 0; 1; 0; 1; 1; 1|]
+    [|0; 0; 0; 0; 0; 1; 0; 0; 0; 0|]
+|]
+let path = findPath 7 9 9 9 map
 
-let startX, startY = 0, 0
-let goalX, goalY = 14, 14
-let path = findPath startX startY goalX goalY map
-
-// findPath の先頭の node を得る関数
-let getFirstNode path =
-    match path with
-    | Some node -> Some node
-    | None -> None
 
 [<EntryPoint>]
 let main argv =
-    for line in map do
-        for cell in line do
-            if cell = 0 then printf " " else printf "■"
-        printfn ""
+    Console.Clear()
+    for i in 0 .. Array.length map - 1 do
+        for j in 0 .. Array.length map.[0] - 1 do
+            if map.[i].[j] = 1 
+                then printf "\u001b[%d;%dH\u001b[31m■\u001b[0m" (i + 1) (j + 2)
+                else printf "\u001b[%d;%dH\u001b[32m■\u001b[0m" (i + 1) (j + 2)
+
+    match path with
+    | Some node ->
+        let mutable currentNode = node
+        while currentNode.Parent.IsSome do
+            printf "\u001b[%d;%dH\u001b[33m+\u001b[0m" (currentNode.X + 1) (currentNode.Y + 2)
+            currentNode <- currentNode.Parent.Value
+    | None -> printfn "No path found"
+    printf "\u001b[11;0H"
     0
 
 // findPath startNode goalNode map で経路を検索

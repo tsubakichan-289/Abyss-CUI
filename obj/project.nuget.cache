@@ -1,10 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "34QmHvkgkvyNlPwpASUI9k4tABF9KSWdT4V6Fs45l/aP9UQU0YmLy2vSfbLqcc7G11KWArztDWtOYpk48UfiXA==",
+  "dgSpecHash": "dB/WZZusyDQ=",
   "success": true,
-  "projectFilePath": "d:\\work\\fs\\Abyss-CUI\\Abyss-CUI\\Abyss-CUI.fsproj",
+  "projectFilePath": "C:\\Users\\tsuba\\work\\fs\\Abyss-CUI\\Abyss-CUI.fsproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Masuo\\.nuget\\packages\\fsharp.core\\8.0.100\\fsharp.core.8.0.100.nupkg.sha512"
+    "C:\\Users\\tsuba\\.nuget\\packages\\fsharp.core\\8.0.300\\fsharp.core.8.0.300.nupkg.sha512",
+    "C:\\Users\\tsuba\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.30\\microsoft.netcore.app.ref.6.0.30.nupkg.sha512",
+    "C:\\Users\\tsuba\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.30\\microsoft.windowsdesktop.app.ref.6.0.30.nupkg.sha512",
+    "C:\\Users\\tsuba\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.30\\microsoft.aspnetcore.app.ref.6.0.30.nupkg.sha512",
+    "C:\\Users\\tsuba\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\6.0.30\\microsoft.netcore.app.host.win-x64.6.0.30.nupkg.sha512"
   ],
   "logs": []
 }

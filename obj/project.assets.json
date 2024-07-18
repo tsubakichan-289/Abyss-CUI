@@ -2,7 +2,7 @@
   "version": 3,
   "targets": {
     "net6.0": {
-      "FSharp.Core/8.0.100": {
+      "FSharp.Core/8.0.300": {
         "type": "package",
         "compile": {
           "lib/netstandard2.1/FSharp.Core.dll": {
@@ -59,15 +59,15 @@
     }
   },
   "libraries": {
-    "FSharp.Core/8.0.100": {
-      "sha512": "ZOVZ/o+jI3ormTZOa28Wh0tSRoyle1f7lKFcUN61sPiXI7eDZu8eSveFybgTeyIEyW0ujjp31cp7GOglDgsNEg==",
+    "FSharp.Core/8.0.300": {
+      "sha512": "Jv44fV7TNglyMku89lQcA4Q6mFKLyHb2bs1Yb72nvSVc+cHplEnoZ4XQUaaTLJGUTx/iMqcrkYGtaLzkkIhpaA==",
       "type": "package",
-      "path": "fsharp.core/8.0.100",
+      "path": "fsharp.core/8.0.300",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
-        "fsharp.core.8.0.100.nupkg.sha512",
+        "fsharp.core.8.0.300.nupkg.sha512",
         "fsharp.core.nuspec",
         "lib/netstandard2.0/FSharp.Core.dll",
         "lib/netstandard2.0/FSharp.Core.xml",
@@ -104,23 +104,23 @@
   },
   "projectFileDependencyGroups": {
     "net6.0": [
-      "FSharp.Core >= 8.0.100"
+      "FSharp.Core >= 8.0.300"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Masuo\\.nuget\\packages\\": {}
+    "C:\\Users\\tsuba\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "d:\\work\\fs\\Abyss-CUI\\Abyss-CUI\\Abyss-CUI.fsproj",
+      "projectUniqueName": "c:\\Users\\tsuba\\work\\fs\\Abyss-CUI\\Abyss-CUI.fsproj",
       "projectName": "Abyss-CUI",
-      "projectPath": "d:\\work\\fs\\Abyss-CUI\\Abyss-CUI\\Abyss-CUI.fsproj",
-      "packagesPath": "C:\\Users\\Masuo\\.nuget\\packages\\",
-      "outputPath": "d:\\work\\fs\\Abyss-CUI\\Abyss-CUI\\obj\\",
+      "projectPath": "c:\\Users\\tsuba\\work\\fs\\Abyss-CUI\\Abyss-CUI.fsproj",
+      "packagesPath": "C:\\Users\\tsuba\\.nuget\\packages\\",
+      "outputPath": "c:\\Users\\tsuba\\work\\fs\\Abyss-CUI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Masuo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\tsuba\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -128,7 +128,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\sdk\\8.0.100\\FSharp\\library-packs": {},
+        "C:\\Program Files\\dotnet\\sdk\\8.0.300\\FSharp\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -136,6 +136,11 @@
           "targetAlias": "net6.0",
           "projectReferences": {}
         }
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -145,7 +150,7 @@
           "FSharp.Core": {
             "include": "Runtime, Compile, Build, Native, Analyzers, BuildTransitive",
             "target": "Package",
-            "version": "[8.0.100, )",
+            "version": "[8.0.300, )",
             "generatePathProperty": true
           }
         },
@@ -160,12 +165,30 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[6.0.30, 6.0.30]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Host.win-x64",
+            "version": "[6.0.30, 6.0.30]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[6.0.30, 6.0.30]"
+          },
+          {
+            "name": "Microsoft.WindowsDesktop.App.Ref",
+            "version": "[6.0.30, 6.0.30]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300\\RuntimeIdentifierGraph.json"
       }
     }
   }
